@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     #def start():
     #global should_stop_threads
-    record_thread = threading.Thread(target=record_audio,args=(args.delay_time, should_stop_threads))
+    record_thread = threading.Thread(target=record_audio,args=(int(args.delay_time), should_stop_threads))
     process_thread = threading.Thread(target=process_audio, args = (transcribed_text, args.language, should_stop_threads))
     record_thread.setDaemon(True)
     process_thread.setDaemon(True)

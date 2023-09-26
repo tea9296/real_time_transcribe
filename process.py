@@ -19,17 +19,19 @@ def get_device_index(p):
     dev_index = 2
     for i in range(p.get_device_count()):
         dev = p.get_device_info_by_index(i)
+        #print(dev)
         if dev['hostApi']==0 and ('立體聲混音' in dev['name'] or \
             '立体声混音' in dev['name'] or 'Stereo Mix' in dev['name']) :
             dev_index = i
             #print(dev)
             return dev_index
+    return dev_index
 
 def create_audio_stream(record_sec:int = 3):
+    record_sec = int(record_sec)
     p = pyaudio.PyAudio()
 
     dev_index = get_device_index(p)
-
 
     stream = p.open(format = FORMAT,
                 channels = CHANNELS,
@@ -66,8 +68,11 @@ def process_audio(transcribed_text, language:str="English", should_stop_threads:
         options = whisper.DecodingOptions(fp16=False, language=language)
         result = whisper.decode(model, mel, options)
         # PRINT LAST 5 LINES
-        content_text.append(result.text)
-        content_text = content_text[-REMAIN_LINE:]
-        transcribed_text.set('\n'.join(content_text))
+        if "謝謝觀看"   in result.text or "Thank you for watching!" in result.text :
+            continue
+        else:
+            content_text.append(result.text)
+            content_text = content_text[-REMAIN_LINE:]
+            transcribed_text.set('\n'.join(content_text))
         
         print(result.text)
