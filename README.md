@@ -20,3 +20,11 @@ python tk.py -l Japanese -d 5
 
 -l or --language you can type English, Japanese or Chinese...
 -d or --delay_time you can type a number less than 30, this means the length (seconds) of each audio clip, and each clip will send to whisper model to output texts.
+
+
+
+
+## Future work 
+1. separate audio data by the loudness (try not to split a sentense)
+2. fix button not work issue when the tkinter user interface is transparent, so that i can start and end the program or changing config using user interface.
+3. add some config like the model of whipser(currently medium), select recording device, font color and size? 
