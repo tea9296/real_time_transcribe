@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import threading
 import argparse
-from process import record_audio, process_audio
+from rtt.process import record_audio, process_audio
 
 # Create the Tkinter app
 DEFAULT_LANGUAGE = "English"

@@ -15,7 +15,7 @@ def stream(language:str, delay_time:int):
     
     import tkinter as tk
     from tkinter import ttk
-    from process import record_audio, process_audio
+    from rtt.process import record_audio, process_audio
     import threading
     
     app = tk.Tk()
