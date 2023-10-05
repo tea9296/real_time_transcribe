@@ -1,13 +1,17 @@
 # real_time_transcribe
-Use Pyaudio to catch speakers audio from Stereo Mixer, and then use Whisper to transcribe voice to text
+Use Pyaudio to catch speakers audio from Stereo Mixer, and then use Whisper to transcribe voice to text. 
+Also can input a youtube url and get the transcription.
+
+1. "rtt stream"  to open a tkinter ui and show real time transcription
+2. "rtt yt  -u  {url}"  given a youtube video url and transcribe it into docx file.
 
 
 
 ## Install
 1. make sure you have Stereo Mixer in the computer and enable it in recording.
-2. create a Python=3.8 environment and use "pip install -r requirements.txt" to install require packages.
-3. use "python tk.py -l {language} -d {delay time}" to run the program and it will create a windows start to show transcribes of computer speakers audio.
-4. close the window and the program will terminate.
+2. use pip install git+https://github.com/tea9296/real_time_transcribe.git  to install the rtt package.
+3. use "rtt stream -l {language} -d {delay_time}"  to open a tkinter ui and show real time transcription
+4. use "rtt yt  -u {url} -o {output_file_name}"  given a youtube video url and transcribe it into docx file.
 
 
 
@@ -15,13 +19,20 @@ Use Pyaudio to catch speakers audio from Stereo Mixer, and then use Whisper to t
 
 ```console
 
-python tk.py -l Japanese -d 5
+rtt stream -l Japanese -d 5
 ```
 
 -l or --language you can type English, Japanese or Chinese...
 -d or --delay_time you can type a number less than 30, this means the length (seconds) of each audio clip, and each clip will send to whisper model to output texts.
 
 
+
+```console
+
+rtt yt -u https://www.youtube.com/watch?.... -o tsp.docx
+```
+-u or --url the youtube url link.
+-o or --output_file the output .docx file name, default is the title of youtube url link. 
 
 
 ## Future work 
