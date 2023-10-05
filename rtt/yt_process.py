@@ -72,7 +72,7 @@ def process_youtube_video(url:str, output_file_name:str = ""):
     
     
     if output_file_name=="":
-        output_file_name = "./" + file_name.replace('/','_').replace(' ','') 
+        output_file_name = "./" + file_name.replace('/','_').replace(' ','').replace('\"','').replace('\'','') 
     
     if output_file_name.split('.')[-1] != 'docx':
         output_file_name += '.docx'
@@ -93,7 +93,7 @@ def process_youtube_video(url:str, output_file_name:str = ""):
     #separated_audio.unlink()
     try:      
         shutil.rmtree('./separated/')
-        
+        shutil.rmtree('./temp/')
     except OSError as e:
         print(f"Error: {e}")
     
