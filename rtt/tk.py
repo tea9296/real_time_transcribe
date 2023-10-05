@@ -6,7 +6,7 @@ from process import record_audio, process_audio
 
 # Create the Tkinter app
 DEFAULT_LANGUAGE = "English"
-DEFAULT_TIME_DELAY = 5
+DEFAULT_TIME_DELAY = 3
 app = tk.Tk()
 app.title("Real-Time Transcription")
 app.geometry("1000x200") # set window size
@@ -40,7 +40,7 @@ app.wm_attributes('-topmost', 1) # bring window to front
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="My CLI Tool")
     parser.add_argument("-l","--language", help="Input file path", default="English")
-    parser.add_argument("-d", "--delay_time", help="time for record a audio file", default=5)
+    parser.add_argument("-d", "--delay_time", help="time for record a audio file", default=3)
 
     args = parser.parse_args()
 
