@@ -43,8 +43,19 @@ def stream(language:str, delay_time:int):
     
     app.mainloop()
     
+
+@click.command()
+@click.option("--url","-u", help="Youtube video url")
+@click.option( "--output_file", "-o",help="output file name, default youtube title", default="")
+def yt(url:str, output_file:str):
+    import yt_process as yt
+    transcription = yt.process_youtube_video(url, output_file)
+
+    print(transcription)
+    
     
 rtt.add_command(stream)
+rtt.add_command(yt)
 
 
 if __name__ == '__main__':
