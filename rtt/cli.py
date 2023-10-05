@@ -48,7 +48,7 @@ def stream(language:str, delay_time:int):
 @click.option("--url","-u", help="Youtube video url")
 @click.option( "--output_file", "-o",help="output file name, default youtube title", default="")
 def yt(url:str, output_file:str):
-    import yt_process as yt
+    import rtt.yt_process as yt
     transcription = yt.process_youtube_video(url, output_file)
 
     print(transcription)
