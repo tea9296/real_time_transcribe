@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='rtt',
-    version='0.1',
+    version='0.2',
     description="use whisper and pyaudio to record audio and do transcription",
     author='chih chuan chang',
     author_email='tea9296@gmail.com',

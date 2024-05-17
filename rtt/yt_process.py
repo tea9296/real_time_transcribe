@@ -133,7 +133,7 @@ def process_youtube_video(url: str,
     if output_file_name.split('.')[-1] == 'docx':
         save_doc(transcription, output_file_name)
     else:
-        with open(output_file_name, 'w') as f:
+        with open(output_file_name, 'w', encoding="utf-8") as f:
             f.write(transcription)
 
     return transcription

@@ -12,7 +12,7 @@ Also can input a youtube url and get the transcription.
 2. use pip install git+https://github.com/tea9296/real_time_transcribe.git  to install the rtt package.
 3. use "rtt stream -l {language} -d {delay_time}"  to open a tkinter ui and show real time transcription
 4. use "rtt yt  -u {url} -o {output_file_name}"  given a youtube video url and transcribe it into docx file.
-
+5. use "rtt wav -i {wav file path} -o {output_file_name}" to transcribe a .wav file.
 
 
 ## Example
@@ -30,9 +30,11 @@ rtt stream -l Japanese -d 5
 ```console
 
 rtt yt -u https://www.youtube.com/watch?.... -o tsp.docx
+rtt yt -u https://www.youtube.com/watch?.... -o tsp.srt -l Chinese
 ```
 -u or --url the youtube url link.
--o or --output_file the output .docx file name, default is the title of youtube url link. 
+-o or --output_file the output .docx file name, default is the title of youtube url link. If the extension is .srt or .txt, will save into text file with timestamps.
+-l or --language the language. Chinese, English or Japanese... 
 
 
 ## Future work 
