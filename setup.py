@@ -7,6 +7,7 @@ setup(
     author='chih chuan chang',
     author_email='tea9296@gmail.com',
     install_requires=[
+        'torch==2.2.0', 'torchvision==0.17.0', 'torchaudio==2.2.0', 'demucs',
         'click', 'openai-whisper', 'pyaudio==0.2.13', 'numpy>=1.24.4',
         'pytubefix', 'python-docx'
     ],
