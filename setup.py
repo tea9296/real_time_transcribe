@@ -1,15 +1,14 @@
 from setuptools import setup
 
+req_file = "requirements.txt"
+with open(req_file, encoding="utf-8") as f:
+    requirements = f.read().splitlines()
 setup(
     name='rtt',
-    version='0.2',
+    version='0.3',
     description="use whisper and pyaudio to record audio and do transcription",
     author='chih chuan chang',
     author_email='tea9296@gmail.com',
-    install_requires=[
-        'torch==2.2.0', 'torchvision==0.17.0', 'torchaudio==2.2.0', 'demucs',
-        'click', 'openai-whisper', 'pyaudio==0.2.13', 'numpy>=1.24.4',
-        'pytubefix', 'python-docx'
-    ],
+    install_requires=requirements,
     packages=['rtt'],
     entry_points={'console_scripts': ['rtt = rtt.cli:rtt']})

@@ -6,9 +6,13 @@ Also can input a youtube url and get the transcription.
 2. "rtt yt  -u  {url}"  given a youtube video url and transcribe it into docx file.
 
 
-## GPU
+## Install with GPU usage 
 to use GPU, need to install torch with cuda compatible version
 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+1. git clone https://github.com/tea9296/real_time_transcribe.git
+2. pip install -r requirements_gpu.txt --extra-index-url https://download.pytorch.org/whl/cu126
+3. pip install .
+
 
 ## Install
 1. make sure you have Stereo Mixer in the computer and enable it in recording.

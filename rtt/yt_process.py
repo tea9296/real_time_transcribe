@@ -6,6 +6,7 @@ import whisper
 import datetime
 import shutil
 from docx import Document
+from urllib.parse import urlparse, parse_qs
 
 
 # Function to download a YouTube video
@@ -25,11 +26,21 @@ def download_video(url, output_dir):
 
 
 # Function to convert video to WAV using FFmpeg
-def convert_to_wav(input_file, output_file):
-    subprocess.run([
-        "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "16000",
-        output_file
+def convert_to_wav(input_file, output_file, start_time=0):
+    command = ["ffmpeg"]
+    if start_time > 0:
+        command.extend(["-ss", str(start_time)])
+
+    command.extend([
+        "-i",
+        str(input_file),
+        "-acodec",
+        "pcm_s16le",
+        "-ar",
+        "16000",
+        str(output_file),
     ])
+    subprocess.run(command)
 
 
 # Function to filter vocals using Demucs
@@ -48,6 +59,7 @@ def transcribe_audio(input_file,
         result = model.transcribe(input_file.__str__(),
                                   initial_prompt="以下是普通話的句子。",
                                   verbose=True,
+                                  language='zh',
                                   word_timestamps=True)
     else:
         result = model.transcribe(input_file.__str__(),
@@ -99,6 +111,14 @@ def process_youtube_video(url: str,
                           model_name: str = "medium",
                           language: str = "English"):
 
+    # Parse URL for start time
+    parsed_url = urlparse(url)
+    query_params = parse_qs(parsed_url.query)
+    start_time_str = query_params.get('t', [None])[0]
+    start_time = 0
+    if start_time_str and start_time_str.rstrip('s').isdigit():
+        start_time = int(start_time_str.rstrip('s'))
+
     output_dir = ".temp"
 
     video_file, file_name = download_video(url, output_dir)
@@ -114,8 +134,7 @@ def process_youtube_video(url: str,
         timestamps = False
 
     separated_audio = f"./separated/htdemucs/{video_file.stem}/vocals.wav"
-
-    convert_to_wav(video_file, wav_file)
+    convert_to_wav(video_file, wav_file, start_time)
     filter_vocals(wav_file)
     transcription = transcribe_audio(separated_audio, model_name, language,
                                      timestamps)
